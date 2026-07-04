@@ -1,4 +1,4 @@
-# AI Response Quality Evaluator Engine
+# AI Response Quality Evaluator Agent
  
 A multi-agent LLM evaluation system that scores AI-generated responses across relevance, accuracy, hallucination, and completeness using a RAG pipeline grounded in TruthfulQA and SQuAD.
  

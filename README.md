@@ -11,7 +11,6 @@ A multi-agent LLM evaluation system that scores AI-generated responses across re
 - **Vector Store:** ChromaDB
 - **Grounding Datasets:** TruthfulQA, SQuAD
 - **Evaluation:** RAGAS, TruLens
-- **Deployment:** Render + Vercel
   
 ## How It Works
  

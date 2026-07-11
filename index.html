@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>AI Response Quality Evaluator</title>
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ===========================
+         SIDEBAR
+    =========================== -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="logo">
+
+                <div class="logo-circle">
+                    AI
+                </div>
+
+                <div>
+                    <h2>AI Evaluator</h2>
+                    <p>Quality Dashboard</p>
+                </div>
+
+            </div>
+
+            <nav>
+
+                <a class="active" href="#top">
+                     Dashboard
+                </a>
+
+                <a href="#metrics">
+                     Evaluation
+                </a>
+
+                <a href="#retrieval">
+                     Retrieval
+                </a>
+
+                <a>
+                     History
+                </a>
+
+
+            </nav>
+
+        </div>
+
+        <div class="sidebar-footer">
+
+
+            <span>
+
+                Groq • RAGAS • ChromaDB
+
+            </span>
+
+        </div>
+
+    </aside>
+
+    <!-- ===========================
+         MAIN CONTENT
+    =========================== -->
+
+    <main class="content">
+
+        <!-- ===========================
+             TOP BAR
+        =========================== -->
+
+        <header class="topbar" id="top">
+
+            <div>
+
+                <h1>
+
+                    AI Response Quality Evaluator
+
+                </h1>
+
+                <p>
+
+                   Agent evaluation dashboard for assesing AI responses!
+
+                </p>
+
+            </div>
+
+
+        </header>
+
+        <!-- ===========================
+             INPUT SECTION
+        =========================== -->
+
+        <section class="input-card">
+
+            <h2>
+
+                Evaluation Input
+
+            </h2>
+
+            <label>
+
+                Question
+
+            </label>
+
+            <textarea
+                id="question"
+                placeholder="Enter your question..."></textarea>
+
+            <label>
+
+                Candidate Answer
+
+            </label>
+
+            <textarea
+                id="answer"
+                placeholder="Enter the generated answer..."></textarea>
+
+            <label>
+
+                Reference Answer
+
+            </label>
+
+            <textarea
+                id="reference"
+                placeholder="Enter the reference answer..."></textarea>
+
+            <button id="evaluateBtn">
+
+                 Evaluate Response
+
+            </button>
+
+        </section>
+
+        <!-- ===========================
+             EVALUATION METRICS
+        =========================== -->
+
+        <section class="score-grid" id="metrics">
+
+            <div class="metric-card">
+
+                <h3>
+
+                    Accuracy
+
+                </h3>
+
+                <div
+                    id="accuracy"
+                    class="metric">
+
+                    --
+
+                </div>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h3>
+
+                    Relevance
+
+                </h3>
+
+                <div
+                    id="relevance"
+                    class="metric">
+
+                    --
+
+                </div>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h3>
+
+                    Faithfulness
+
+                </h3>
+
+                <div
+                    id="faithfulness"
+                    class="metric">
+
+                    --
+
+                </div>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h3>
+
+                    Completeness
+
+                </h3>
+
+                <div
+                    id="completeness"
+                    class="metric">
+
+                    --
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="score-grid">
+
+            <div class="metric-card">
+
+                <h3>
+
+                    Hallucination Risk
+
+                </h3>
+
+                <div
+                    id="hallucination"
+                    class="metric">
+
+                    --
+
+                </div>
+
+            </div>
+
+            <div class="metric-card">
+
+                <h3>
+
+                    Overall Score
+
+                </h3>
+
+                <div
+                    id="overall"
+                    class="metric">
+
+                    --
+
+                </div>
+
+            </div>
+                        
+
+        </section>
+
+        <!-- ===========================
+             RETRIEVED CONTEXT
+        =========================== -->
+
+        <section class="context-card" id="retrieval">
+
+            <div class="section-title">
+
+                Retrieved Context
+
+            </div>
+
+            <div id="contexts">
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,573 @@
+/* =========================================================
+   AI RESPONSE QUALITY EVALUATOR
+   Premium Enterprise Dashboard
+========================================================= */
+
+:root{
+
+    --bg:#70698d;
+    --sidebar:#494155;
+    --card:#494155;
+    --card2:#494155;
+
+    --yellow:#cbc9c1;
+    --yellow-dark:#e8e1c4;
+
+    --white:#F6F6F6;
+    --grey:#000000;
+
+    --border:#70698d;
+
+    --radius:12px;
+
+    --shadow:
+    0 12px 35px rgba(193, 164, 164, 0.45);
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--yellow);
+
+    font-family:"Trebuchet MS", "Lucida Grande", sans-serif;
+
+    overflow-x:hidden;
+
+}
+
+/* ==============================
+LAYOUT
+============================== */
+
+.layout{
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    min-height:100vh;
+
+}
+
+/* ==============================
+SIDEBAR
+============================== */
+
+.sidebar{
+
+    background:var(--sidebar);
+
+    border-right:1px solid var(--border);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:35px 25px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+    margin-bottom:50px;
+
+}
+
+.logo-circle{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:var(--white);
+
+    color:rgb(158, 149, 149);
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+.logo h2{
+
+    font-size:24px;
+
+}
+
+.logo p{
+
+    color:var(--yellow);
+
+    font-size:14px;
+
+}
+
+nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+nav a{
+
+    text-decoration:none;
+
+    color:#cfcfcf;
+
+    padding:16px 20px;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+    cursor:pointer;
+
+    font-weight:500;
+
+}
+
+nav a:hover{
+
+    background:#232323;
+
+    color:var(--yellow);
+
+}
+
+nav .active{
+
+    background:var(--yellow);
+
+    color:rgb(131, 119, 119);
+
+    font-weight:700;
+
+}
+
+.sidebar-footer{
+
+    color:var(--grey);
+
+    font-size:13px;
+
+    line-height:24px;
+
+}
+
+.sidebar-footer span{
+
+    display:block;
+
+    color:var(--yellow);
+
+    font-weight:600;
+
+}
+
+/* ==============================
+CONTENT
+============================== */
+
+.content{
+
+    padding:40px;
+
+}
+
+/* ==============================
+TOP BAR
+============================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.topbar h1{
+
+    font-size:38px;
+
+    margin-bottom:6px;
+
+}
+
+.topbar p{
+
+    color:var(--grey);
+
+}
+
+.status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#a8a8b6;
+
+    border:1px solid var(--border);
+
+    padding:14px 20px;
+
+    border-radius:50px;
+
+}
+
+.dot{
+
+    width:12px;
+
+    height:12px;
+
+    background:#00e676;
+
+    border-radius:50%;
+
+    box-shadow:0 0 18px #00e676;
+
+}
+
+/* ==============================
+INPUT CARD
+============================== */
+
+.input-card{
+
+    background:var(--card);
+
+    padding:35px;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:35px;
+
+}
+
+.input-card h2{
+
+    margin-bottom:25px;
+
+    color:var(--yellow);
+
+}
+
+label{
+
+    display:block;
+
+    margin:18px 0 8px;
+
+    font-weight:600;
+
+}
+
+textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    resize:none;
+
+    background:#a192a1;
+
+    border:1px solid #333;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    color:rgb(25, 9, 22);
+
+    font-size:15px;
+
+    font-family:"JetBrains Mono",monospace;
+
+    transition:.3s;
+
+}
+
+textarea::placeholder{
+
+    color:#2f222e;   
+    opacity:1;
+
+}
+
+textarea:focus{
+
+    outline:none;
+
+    border-color:var(--white);
+
+    box-shadow:0 0 15px rgba(72, 61, 71, 0.18);
+
+}
+
+/* ==============================
+BUTTON
+============================== */
+
+button{
+
+    margin-top:28px;
+
+    background:var(--white);
+
+    color:black;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:16px 34px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    background:#ac8dac;
+
+    box-shadow:0 8px 20px rgba(15, 15, 15, 0.35);
+
+}
+
+/* ==============================
+METRIC GRID
+============================== */
+
+.score-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    margin-bottom:28px;
+
+}
+
+.metric-card{
+
+    background:var(--card);
+
+    border-radius:18px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+    border:1px solid #262626;
+
+}
+
+.metric-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:var(--yellow);
+
+}
+
+.metric-card h3{
+
+    color:#cfcfcf;
+
+    font-size:15px;
+
+    margin-bottom:20px;
+
+}
+
+.metric{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:var(--yellow);
+
+}
+
+/* ==============================
+CONTEXT
+============================== */
+
+.context-card,
+
+.feedback-card{
+
+    margin-top:25px;
+
+    background:var(--card);
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.section-title{
+
+    color:var(--white);
+
+    font-size:22px;
+
+    margin-bottom:22px;
+
+}
+
+#contexts{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.context-item{
+
+    background:#121212;
+
+    border-left:6px solid var(--yellow);
+
+    padding:20px;
+
+    border-radius:14px;
+
+    line-height:1.7;
+
+}
+
+/* ==============================
+SCROLLBAR
+============================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--yellow);
+
+    border-radius:10px;
+
+}
+
+/* ==============================
+RESPONSIVE
+============================== */
+
+@media(max-width:1200px){
+
+.score-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:900px){
+
+.layout{
+
+grid-template-columns:1fr;
+
+}
+
+.sidebar{
+
+display:none;
+
+}
+
+.content{
+
+padding:20px;
+
+}
+
+.score-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.topbar{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+}
+
+html{
+    scroll-behavior:smooth;
+}

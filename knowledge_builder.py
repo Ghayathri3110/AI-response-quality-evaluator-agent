@@ -4,9 +4,6 @@ import chromadb
 import os
 import shutil
 
-# =====================================================
-# Load SQuAD Dataset
-# =====================================================
 
 print("=" * 50)
 print("Loading SQuAD dataset...")
@@ -20,9 +17,7 @@ contexts = list(set(squad["context"]))
 
 print(f"Loaded {len(contexts)} unique SQuAD contexts.")
 
-# =====================================================
-# Load Wikipedia Dataset
-# =====================================================
+#wikipedia
 
 print("=" * 50)
 print("Loading Wikipedia dataset...")
@@ -39,9 +34,9 @@ print(f"Loaded {len(wiki)} Wikipedia articles.")
 
 
 
-# =====================================================
+
 # Chunking
-# =====================================================
+
 
 print("=" * 50)
 print("Chunking documents...")
@@ -72,9 +67,9 @@ for doc in contexts:
 
 print(f"Created {len(all_chunks)} chunks.")
 
-# =====================================================
+
 # Load Embedding Model
-# =====================================================
+
 
 print("=" * 50)
 print("Loading Sentence Transformer...")
@@ -83,9 +78,9 @@ model = SentenceTransformer(
     "all-MiniLM-L6-v2"
 )
 
-# =====================================================
+
 # Generate Embeddings
-# =====================================================
+
 
 print("=" * 50)
 print("Generating embeddings...")
@@ -96,9 +91,9 @@ embeddings = model.encode(
     batch_size=64
 )
 
-# =====================================================
+
 # Recreate ChromaDB
-# =====================================================
+
 
 print("=" * 50)
 print("Creating ChromaDB...")
@@ -114,9 +109,9 @@ collection = client.get_or_create_collection(
     name="knowledge_base"
 )
 
-# =====================================================
+
 # Store Embeddings
-# =====================================================
+
 
 print("=" * 50)
 print("Saving embeddings...")
@@ -146,9 +141,9 @@ for i in range(0, len(all_chunks), BATCH_SIZE):
         f"Stored {i + len(batch_chunks)} / {len(all_chunks)} chunks"
     )
 
-# =====================================================
+
 # Finished
-# =====================================================
+
 
 print("=" * 50)
 print("Knowledge Base Created Successfully!")

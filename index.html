@@ -17,7 +17,7 @@
         href="https://fonts.gstatic.com"
         crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet"
@@ -40,7 +40,12 @@
             <div class="logo">
 
                 <div class="logo-circle">
-                    AI
+
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9" stroke="#ad95e0" stroke-width="1.6"/>
+                        <path d="M8 12.5L10.5 15L16 9" stroke="#ad95e0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
                 </div>
 
                 <div>
@@ -52,22 +57,17 @@
 
             <nav>
 
-                <a class="active" href="#top">
+                <a class="nav-link active" data-tab="dashboardTab">
                      Dashboard
                 </a>
 
-                <a href="#metrics">
-                     Evaluation
-                </a>
-
-                <a href="#retrieval">
+                <a class="nav-link" data-tab="retrievalTab">
                      Retrieval
                 </a>
 
-                <a>
+                <a class="nav-link" data-tab="historyTab">
                      History
                 </a>
-
 
             </nav>
 
@@ -75,10 +75,9 @@
 
         <div class="sidebar-footer">
 
-
             <span>
 
-                Groq • RAGAS • ChromaDB
+                Groq Agents • ChromaDB • Supabase
 
             </span>
 
@@ -93,218 +92,281 @@
     <main class="content">
 
         <!-- ===========================
-             TOP BAR
+             DASHBOARD TAB
         =========================== -->
 
-        <header class="topbar" id="top">
+        <div class="tab-page active" id="dashboardTab">
 
-            <div>
+            <header class="hero">
 
-                <h1>
+                <span class="eyebrow"><span class="eyebrow-dot"></span> AI EVALUATION ENGINE</span>
 
-                    AI Response Quality Evaluator
+                <h1>SUBMIT A RESPONSE.<br />GET THE <span class="accent-word">VERDICT</span>.</h1>
 
-                </h1>
+                <p class="hero-sub">
 
-                <p>
-
-                   Agent evaluation dashboard for assesing AI responses!
+                   Question in, answer in, reference optional. Three agents score relevance, accuracy, and hallucination risk — with reasoning attached to every number.
 
                 </p>
 
-            </div>
+            </header>
 
+            <div class="tick-strip"></div>
 
-        </header>
+            <!-- INPUT SECTION -->
+
+            <section class="input-card">
+
+                <h2>
+
+                    Evaluation Input
+
+                </h2>
+
+                <label>
+
+                    Question
+
+                </label>
+
+                <textarea
+                    id="question"
+                    placeholder="Enter your question..."></textarea>
+
+                <label>
+
+                    Candidate Answer
+
+                </label>
+
+                <textarea
+                    id="answer"
+                    placeholder="Enter the generated answer..."></textarea>
+
+                <label>
+
+                    Reference Answer <span class="optional-tag">(optional)</span>
+
+                </label>
+
+                <textarea
+                    id="reference"
+                    placeholder="Enter the reference answer, or leave blank..."></textarea>
+
+                <label>
+
+                    Source Document <span class="optional-tag">(optional PDF)</span>
+
+                </label>
+
+                <div class="file-row">
+
+                    <input
+                        type="file"
+                        id="sourcePdf"
+                        accept="application/pdf" />
+
+                    <button
+                        type="button"
+                        id="clearPdfBtn"
+                        class="clear-file-btn"
+                        title="Remove selected PDF">
+
+                        ✕
+
+                    </button>
+
+                </div>
+
+                <p
+                    id="pdfFileName"
+                    class="file-name-display">
+
+                </p>
+
+                <button id="evaluateBtn">
+
+                    EVALUATE
+
+                </button>
+
+            </section>
+
+            <div class="tick-strip"></div>
+
+            <!-- EVALUATION METRICS -->
+
+            <section class="score-grid">
+
+                <div class="metric-card">
+
+                    <h3>
+
+                        Accuracy
+
+                    </h3>
+
+                    <div
+                        id="accuracy"
+                        class="metric">
+
+                        --
+
+                    </div>
+
+                    <p
+                        id="accuracyEvidence"
+                        class="metric-reasoning">
+
+                    </p>
+
+                    <p
+                        id="accuracyExcerpt"
+                        class="metric-excerpt">
+
+                    </p>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <h3>
+
+                        Relevance
+
+                    </h3>
+
+                    <div
+                        id="relevance"
+                        class="metric">
+
+                        --
+
+                    </div>
+
+                    <p
+                        id="relevanceReasoning"
+                        class="metric-reasoning">
+
+                    </p>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <h3>
+
+                        Hallucination Risk
+
+                    </h3>
+
+                    <div
+                        id="hallucination"
+                        class="metric">
+
+                        --
+
+                    </div>
+
+                    <p
+                        id="hallucinationReasoning"
+                        class="metric-reasoning">
+
+                    </p>
+
+                    <ul
+                        id="hallucinationFlags"
+                        class="flag-list">
+
+                    </ul>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <h3>
+
+                        Overall Score
+
+                    </h3>
+
+                    <div
+                        id="overall"
+                        class="metric">
+
+                        --
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
 
         <!-- ===========================
-             INPUT SECTION
+             RETRIEVAL TAB
         =========================== -->
 
-        <section class="input-card">
+        <div class="tab-page" id="retrievalTab">
 
-            <h2>
+            <header class="hero">
 
-                Evaluation Input
+                <span class="eyebrow"><span class="eyebrow-dot"></span> RAG PIPELINE</span>
 
-            </h2>
+                <h1>RETRIEVED <span class="accent-word">CONTEXT</span>.</h1>
 
-            <label>
+                <p class="hero-sub">Source chunks pulled from ChromaDB (and any uploaded PDF) for the most recent evaluation.</p>
 
-                Question
+            </header>
 
-            </label>
+            <div class="tick-strip"></div>
 
-            <textarea
-                id="question"
-                placeholder="Enter your question..."></textarea>
+            <section class="context-card">
 
-            <label>
+                <div id="contexts">
 
-                Candidate Answer
+                    <div class="context-item">
+                        <p>Run an evaluation from the Dashboard tab to see retrieved context here.</p>
+                    </div>
 
-            </label>
+                </div>
 
-            <textarea
-                id="answer"
-                placeholder="Enter the generated answer..."></textarea>
+            </section>
 
-            <label>
-
-                Reference Answer
-
-            </label>
-
-            <textarea
-                id="reference"
-                placeholder="Enter the reference answer..."></textarea>
-
-            <button id="evaluateBtn">
-
-                 Evaluate Response
-
-            </button>
-
-        </section>
+        </div>
 
         <!-- ===========================
-             EVALUATION METRICS
+             HISTORY TAB
         =========================== -->
 
-        <section class="score-grid" id="metrics">
+        <div class="tab-page" id="historyTab">
 
-            <div class="metric-card">
+            <header class="hero">
 
-                <h3>
+                <span class="eyebrow"><span class="eyebrow-dot"></span> PERSISTED IN SUPABASE</span>
 
-                    Accuracy
+                <h1>EVALUATION <span class="accent-word">HISTORY</span>.</h1>
 
-                </h3>
+                <p class="hero-sub">Every past evaluation, with full scores and reasoning intact.</p>
 
-                <div
-                    id="accuracy"
-                    class="metric">
+            </header>
 
-                    --
+            <div class="tick-strip"></div>
 
-                </div>
+            <section class="context-card">
 
-            </div>
+                <div id="historyList">
 
-            <div class="metric-card">
-
-                <h3>
-
-                    Relevance
-
-                </h3>
-
-                <div
-                    id="relevance"
-                    class="metric">
-
-                    --
+                    <div class="context-item">
+                        <p>No evaluations yet.</p>
+                    </div>
 
                 </div>
 
-            </div>
+            </section>
 
-            <div class="metric-card">
-
-                <h3>
-
-                    Faithfulness
-
-                </h3>
-
-                <div
-                    id="faithfulness"
-                    class="metric">
-
-                    --
-
-                </div>
-
-            </div>
-
-            <div class="metric-card">
-
-                <h3>
-
-                    Completeness
-
-                </h3>
-
-                <div
-                    id="completeness"
-                    class="metric">
-
-                    --
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section class="score-grid">
-
-            <div class="metric-card">
-
-                <h3>
-
-                    Hallucination Risk
-
-                </h3>
-
-                <div
-                    id="hallucination"
-                    class="metric">
-
-                    --
-
-                </div>
-
-            </div>
-
-            <div class="metric-card">
-
-                <h3>
-
-                    Overall Score
-
-                </h3>
-
-                <div
-                    id="overall"
-                    class="metric">
-
-                    --
-
-                </div>
-
-            </div>
-                        
-
-        </section>
-
-        <!-- ===========================
-             RETRIEVED CONTEXT
-        =========================== -->
-
-        <section class="context-card" id="retrieval">
-
-            <div class="section-title">
-
-                Retrieved Context
-
-            </div>
-
-            <div id="contexts">
-
-            </div>
-
-        </section>
+        </div>
 
     </main>
 
